@@ -14,7 +14,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 module.exports = {
 	context: path.resolve(__dirname, "src"),
 	entry: {
-		vendor1: ['react', 'react-router', 'react-router-dom', 'react-router-bootstrap'],
+		vendor1: ['react', 'react-router', 'react-router-dom', 'react-router-bootstrap','redux','react-redux'],
 		vendor2: ['react-dom'],
 		bootstrap: ['react-bootstrap'],
 		app: ['./index.js']
@@ -33,7 +33,11 @@ module.exports = {
 			'node_modules'
 		],
 		alias: {
-			components: path.resolve(__dirname, "src/components"),    // used for tests
+			components: path.resolve(__dirname, "src/components"),
+			actions: path.resolve(__dirname, "src/actions"),
+			reducers: path.resolve(__dirname, "src/reducers"),
+			helpers: path.resolve(__dirname, "src/helpers"),
+			store: path.resolve(__dirname, "src/store"),
 			style: path.resolve(__dirname, "src/style"),
 			// 'react': 'preact-compat',
 			// 'react-dom': 'preact-compat'
