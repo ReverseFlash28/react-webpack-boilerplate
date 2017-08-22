@@ -1,5 +1,5 @@
 {
-  "name": "web-boilerplate",
+  "name": "react-webpack-boilerplate",
   "version": "0.0.1",
   "description": "Ready-to-go React starter project powered by webpack.",
   "scripts": {
