@@ -20,8 +20,8 @@ module.exports = {
 		app: ['./index.js']
 	},
 	output: {
-		path: path.resolve(__dirname, "build/assets"),
-		publicPath: '/assets/',
+		path: path.resolve(__dirname, "build"),
+		publicPath: '/',
 		filename: 'js/[name].js'
 	},
 
@@ -115,9 +115,16 @@ module.exports = {
 				use: 'raw-loader'
 			},
 			{
-				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
+				test: /\.(jpe?g|png|gif)(\?.*)?$/i,
 				use: ENV === 'production' ? 'file-loader' : 'url-loader'
-			}
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|svg)$/,
+				loader: ENV === 'production' ? 'file-loader' : 'url-loader',
+				query: {
+					name: 'fonts/glyphicons-halflings-regular.[ext]'
+				}
+			},
 		]
 	},
 	plugins: ([
@@ -132,7 +139,6 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.ejs',
-			filename: '../index.html',
 			minify: {collapseWhitespace: true},
 		}),
 		new CopyWebpackPlugin([
@@ -186,7 +192,7 @@ module.exports = {
 						requestTypes: ['navigate']
 					}
 				],
-				publicPath: '/assets/'
+				publicPath: '/'
 			}),
 			new webpack.optimize.CommonsChunkPlugin({names: ['app', 'bootstrap', 'vendor3', 'vendor2', 'vendor1']}),
 			new﻿webpack.optimize.AggressiveMergingPlugin(),
