@@ -8,7 +8,7 @@ import './style';
 let root;
 function init() {
 	let App = require('./components/app').default;
-	ReactDOM.render(<App />, document.getElementById('app'));
+	ReactDOM.render(<App />, document.getElementById('app-body'));
 }
 
 // register ServiceWorker via OfflinePlugin, for prod only:

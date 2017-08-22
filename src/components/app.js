@@ -19,17 +19,15 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<Provider store={store}>
-				<div id="app">
-					<Router>
-						<Switch>
-							<Route exact path="/" component={Home}/>
-							<Route exact path="/profile" component={Profile}/>
-							<Route path="/profile/:user" component={Profile}/>
-							<RouteWithoutLayout exact path="/login" component={Login}/>
-						</Switch>
-					</Router>
-				</div>
+			<Provider store={store} id="app">
+				<Router>
+					<Switch>
+						<Route exact path="/" component={Home}/>
+						<Route exact path="/profile" component={Profile}/>
+						<Route path="/profile/:user" component={Profile}/>
+						<RouteWithoutLayout exact path="/login" component={Login}/>
+					</Switch>
+				</Router>
 			</Provider>
 		);
 	}

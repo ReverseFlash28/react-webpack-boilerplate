@@ -1,10 +1,10 @@
 {
   "name": "web-boilerplate",
   "version": "0.0.1",
-  "description": "Ready-to-go Preact starter project powered by webpack.",
+  "description": "Ready-to-go React starter project powered by webpack.",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "start": "serve build -s -c 1",
+    "start": "serve build -s -c 1 -p 80",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack --progress",
     "prebuild": "mkdirp build && ncp src/assets build/assets",
@@ -18,7 +18,7 @@
     "webpack"
   ],
   "license": "MIT",
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "Randolf Joshua M. Diezmo <joshuadiezmo@gmail.com>",
   "jest": {
     "setupFiles": [
       "./test/setup.js"
