@@ -13,7 +13,7 @@
     "lint": "eslint src test"
   },
   "keywords": [
-    "preact",
+    "react",
     "boilerplate",
     "webpack"
   ],
