@@ -1,39 +1,69 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import {LinkContainer} from 'react-router-bootstrap';
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	NavLink,
+	UncontrolledDropdown,
+	DropdownToggle,
+	DropdownMenu,
+	DropdownItem,
+	Container
+} from 'reactstrap';
 
 export default class Header extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isOpen: false
+		};
+	}
+
+	toggle = () => {
+		this.setState({
+			isOpen: !this.state.isOpen
+		});
+	}
+
 	render() {
 		return (
-			<Navbar inverse collapseOnSelect fixedTop>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<Link to="/">React-Bootstrap</Link>
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				</Navbar.Header>
-				<Navbar.Collapse>
-					<Nav>
-						<LinkContainer to="/profile/Yowyow">
-							<NavItem eventKey={1} href="#">Yowyow</NavItem>
-						</LinkContainer>
-						<LinkContainer to="/profile" exact>
-							<NavItem eventKey={2} href="#">Me</NavItem>
-						</LinkContainer>
-						<NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-							<MenuItem eventKey={3.1}>Action</MenuItem>
-							<MenuItem eventKey={3.2}>Another action</MenuItem>
-							<MenuItem eventKey={3.3}>Something else here</MenuItem>
-							<MenuItem divider/>
-							<MenuItem eventKey={3.3}>Separated link</MenuItem>
-						</NavDropdown>
+			<Navbar color="primary" dark expand="md">
+				<Container>
+				<NavbarBrand href="/">
+					React webpack boiler plate
+				</NavbarBrand>
+				<NavbarToggler onClick={this.toggle}/>
+				<Collapse isOpen={this.state.isOpen} navbar>
+					<Nav className="ml-auto" navbar>
+						<NavItem>
+							<NavLink href="/components/">Components</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+						</NavItem>
+						<UncontrolledDropdown nav inNavbar>
+							<DropdownToggle nav caret>
+								Options
+							</DropdownToggle>
+							<DropdownMenu >
+								<DropdownItem>
+									Option 1
+								</DropdownItem>
+								<DropdownItem>
+									Option 2
+								</DropdownItem>
+								<DropdownItem divider/>
+								<DropdownItem>
+									Reset
+								</DropdownItem>
+							</DropdownMenu>
+						</UncontrolledDropdown>
 					</Nav>
-					<Nav pullRight>
-						<NavItem eventKey={1} href="#">Link Right</NavItem>
-						<NavItem eventKey={2} href="#">Link Right</NavItem>
-					</Nav>
-				</Navbar.Collapse>
+				</Collapse>
+				</Container>
 			</Navbar>
 		);
 	}

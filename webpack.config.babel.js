@@ -11,12 +11,17 @@ const CSS_MAPS = ENV !== 'production';
 var CompressionPlugin = require('compression-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const extractSass = new ExtractTextPlugin({
+	filename: "[name].[contenthash].css",
+	disable: process.env.NODE_ENV === "development"
+});
+
 module.exports = {
 	context: path.resolve(__dirname, "src"),
 	entry: {
 		vendor1: ['react', 'react-router', 'react-router-dom', 'react-router-bootstrap','redux','react-redux'],
 		vendor2: ['react-dom'],
-		bootstrap: ['react-bootstrap'],
+		bootstrap: ['reactstrap'],
 		app: ['./index.js']
 	},
 	output: {
@@ -26,7 +31,7 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.jsx', '.js', '.json', '.less'],
+		extensions: ['.jsx', '.js', '.json', '.scss'],
 		modules: [
 			path.resolve(__dirname, "src/lib"),
 			path.resolve(__dirname, "node_modules"),
@@ -58,8 +63,8 @@ module.exports = {
 				use: 'babel-loader'
 			},
 			{
-				// Transform our own .(less|css) files with PostCSS and CSS-modules
-				test: /\.(less|css)$/,
+				// Transform our own .(scss|css) files with PostCSS and CSS-modules
+				test: /\.(scss|css)$/,
 				include: [path.resolve(__dirname, 'src/components')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
@@ -78,14 +83,14 @@ module.exports = {
 							}
 						},
 						{
-							loader: 'less-loader',
+							loader: 'sass-loader',
 							options: {sourceMap: CSS_MAPS}
 						}
 					]
 				})
 			},
 			{
-				test: /\.(less|css)$/,
+				test: /\.(scss|css)$/,
 				exclude: [path.resolve(__dirname, 'src/components')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
@@ -104,7 +109,7 @@ module.exports = {
 							}
 						},
 						{
-							loader: 'less-loader',
+							loader: 'sass-loader',
 							options: {sourceMap: CSS_MAPS}
 						}
 					]
@@ -150,6 +155,7 @@ module.exports = {
 			{from: './favicon.ico', to: './'}
 		])
 	]).concat(ENV === 'production' ? [
+			extractSass,
 			new BundleAnalyzerPlugin({
 				analyzerMode: 'static'
 			}),
