@@ -2,7 +2,7 @@
 // import 'isomorphic-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style/bootstrap/bootstrap.less';
+import 'bootstrap/scss/bootstrap.scss'
 import './style';
 
 let root;

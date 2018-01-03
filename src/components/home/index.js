@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import style from './style.less';
-
-import {Glyphicon} from 'react-bootstrap';
+import style from './style.scss';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
